@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { TiLocationArrow } from "react-icons/ti";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../App";
+import UserAvatar from "../Auth/UserAvatar";
 
 import Button from "./Button";
 
@@ -20,6 +23,9 @@ const NavBar = () => {
   const { y: currentScrollY } = useWindowScroll();
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   // Toggle audio and visual indicator
   const toggleAudioIndicator = () => {
@@ -115,6 +121,25 @@ const NavBar = () => {
                 />
               ))}
             </button>
+          </div>
+
+          {/* Sign-in button or user avatar */}
+          <div>
+            {user ? (
+              <div
+                onClick={() => navigate("/profile")}
+                className="cursor-pointer"
+              >
+                <UserAvatar user={user} />
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate("/login")}
+                className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </nav>
       </header>
