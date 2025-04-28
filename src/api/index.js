@@ -38,26 +38,33 @@ const API = {
     }).then(handleResponse);
   },
 
-  post: (endpoint, data) => {
+  post: (endpoint, data, options = {}) => {
     return fetch(`${API_BASE_URL}${endpoint}`, {
       ...defaultOptions,
       method: "POST",
       body: JSON.stringify(data),
+      credentials: options.withCredentials ? "include" : undefined,
     }).then(handleResponse);
   },
 
-  put: (endpoint, data) => {
+  put: (endpoint, data, options = {}) => {
+    // Check if data is FormData, if so, don't set Content-Type header
+    const headers = data instanceof FormData ? {} : defaultOptions.headers;
+
     return fetch(`${API_BASE_URL}${endpoint}`, {
       ...defaultOptions,
+      headers,
       method: "PUT",
-      body: JSON.stringify(data),
+      body: data instanceof FormData ? data : JSON.stringify(data),
+      credentials: options.withCredentials ? "include" : undefined,
     }).then(handleResponse);
   },
 
-  delete: (endpoint) => {
+  delete: (endpoint, options = {}) => {
     return fetch(`${API_BASE_URL}${endpoint}`, {
       ...defaultOptions,
       method: "DELETE",
+      credentials: options.withCredentials ? "include" : undefined,
     }).then(handleResponse);
   },
 };

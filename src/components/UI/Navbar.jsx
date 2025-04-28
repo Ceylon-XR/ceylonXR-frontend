@@ -3,13 +3,13 @@ import gsap from "gsap";
 import { useWindowScroll } from "react-use";
 import { useEffect, useRef, useState, useContext } from "react";
 import { TiLocationArrow } from "react-icons/ti";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../App";
 import UserAvatar from "../Auth/UserAvatar";
 
 import Button from "./Button";
 
-const navItems = ["About", "Contact"];
+const navItems = ["Home", "About", "Contact"];
 
 const NavBar = () => {
   // State for toggling audio and visual indicator
@@ -26,6 +26,24 @@ const NavBar = () => {
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Handle navigation for nav items
+  const handleNavClick = (item) => {
+    if (item.toLowerCase() === "home") {
+      navigate("/");
+    } else {
+      // If we're not on the home page, navigate to home with hash
+      if (location.pathname !== "/") {
+        navigate(`/#${item.toLowerCase()}`);
+      } else {
+        // Just scroll to the section if already on home page
+        document
+          .getElementById(item.toLowerCase())
+          ?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   // Toggle audio and visual indicator
   const toggleAudioIndicator = () => {
@@ -91,8 +109,16 @@ const NavBar = () => {
               {navItems.map((item, index) => (
                 <a
                   key={index}
-                  href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item);
+                  }}
+                  href={
+                    item.toLowerCase() === "home"
+                      ? "/"
+                      : `#${item.toLowerCase()}`
+                  }
+                  className="nav-hover-btn cursor-pointer"
                 >
                   {item}
                 </a>
@@ -128,8 +154,14 @@ const NavBar = () => {
             {user ? (
               <div
                 onClick={() => navigate("/profile")}
-                className="cursor-pointer"
+                className="flex items-center gap-3 cursor-pointer"
               >
+                <div className="flex items-center bg-blue-50 rounded-full px-3 py-1">
+                  <span className="text-indigo-600 font-medium">
+                    {user.tokens || 0}
+                  </span>
+                  <span className="ml-1 text-indigo-600 text-sm">Tokens</span>
+                </div>
                 <UserAvatar user={user} />
               </div>
             ) : (

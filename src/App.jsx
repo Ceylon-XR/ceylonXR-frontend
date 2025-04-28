@@ -70,6 +70,7 @@ function App() {
 
         // Check if response contains user data and update the state and localStorage
         if (response) {
+          // Make sure profilePicture from response is preserved
           console.log("User data:", response);
           setUser(response);
           localStorage.setItem("user", JSON.stringify(response));
@@ -82,6 +83,18 @@ function App() {
         setLoading(false);
       }
     };
+
+    // Try to get user from localStorage first (for faster UI display)
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (err) {
+        console.error("Error parsing stored user:", err);
+        localStorage.removeItem("user");
+      }
+    }
 
     checkAuthStatus();
   }, []);
