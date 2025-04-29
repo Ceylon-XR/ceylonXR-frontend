@@ -30,8 +30,8 @@ const NavBar = () => {
   const isProfilePage =
     location.pathname === "/profile" ||
     location.pathname === "/plans" ||
-    location.pathname === "/payment-success" ||
-    location.pathname === "/payment-cancel" ||
+    location.pathname === "/payment/success" ||
+    location.pathname === "/payment/cancel" ||
     location.pathname === "/login" ||
     location.pathname === "/signup";
 

@@ -19,9 +19,9 @@ export default function PaymentSuccess() {
       const response = await getCurrentUser();
 
       // Update the user in global context and localStorage
-      if (response && response.data) {
-        setUser(response.data);
-        localStorage.setItem("user", JSON.stringify(response.data));
+      if (response) {
+        setUser(response);
+        localStorage.setItem("user", JSON.stringify(response));
       }
 
       setRefreshingUser(false);
