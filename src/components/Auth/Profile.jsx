@@ -1,5 +1,5 @@
 import { useContext, useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../App";
 import NavBar from "../UI/Navbar";
 import Footer from "../UI/Footer";
@@ -123,8 +123,8 @@ const Profile = () => {
   return (
     <div className="min-h-screen flex flex-col ">
       <NavBar />
-      <div className="flex-grow flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-md mt-20 mb-20">
+      <div className="flex-grow flex justify-center py-12 px-4 sm:px-6 lg:px-8 pt-24 bg-gray-50">
+        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-md  mb-20">
           <div className="flex flex-col items-center">
             <div className="mb-4 relative">
               <div
@@ -163,20 +163,30 @@ const Profile = () => {
             )}
             {error && <p className="mt-2 text-center text-red-600">{error}</p>}
 
-            {/* Token Display Card */}
-            <div className="mt-4 w-full bg-blue-50 rounded-lg p-4 flex justify-between items-center">
-              <div>
-                <h3 className="text-lg font-semibold text-indigo-700">
-                  Your Balance
-                </h3>
-                <p className="text-gray-600">Available tokens to use</p>
+            {/* Token Display Card - Updated with Buy Tokens button */}
+            <div className="mt-4 w-full bg-blue-50 rounded-lg p-4">
+              <div className="flex justify-between items-center mb-3">
+                <div>
+                  <h3 className="text-lg font-semibold text-indigo-700">
+                    Your Balance
+                  </h3>
+                  <p className="text-gray-600">Available tokens to use</p>
+                </div>
+                <div className="bg-white rounded-lg p-3 shadow-sm">
+                  <span className="text-2xl font-bold text-indigo-600">
+                    {user.tokens || 0}
+                  </span>
+                  <span className="ml-1 text-gray-500">Tokens</span>
+                </div>
               </div>
-              <div className="bg-white rounded-lg p-3 shadow-sm">
-                <span className="text-2xl font-bold text-indigo-600">
-                  {user.tokens || 0}
-                </span>
-                <span className="ml-1 text-gray-500">Tokens</span>
-              </div>
+
+              {/* New Buy Tokens Button */}
+              <Link
+                to="/plans"
+                className="w-full block text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150"
+              >
+                Buy More Tokens
+              </Link>
             </div>
 
             {/* Account Information */}

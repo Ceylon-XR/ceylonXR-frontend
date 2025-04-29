@@ -13,6 +13,9 @@ import Home from "./components/UI/Home";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Profile from "./components/Auth/Profile";
+import PlansPage from "./components/Payment/PlansPage";
+import PaymentSuccess from "./components/Payment/PaymentSuccess";
+import PaymentCancel from "./components/Payment/PaymentCancel";
 import { getCurrentUser, handleGoogleCallback } from "./api/auth";
 
 // Create authentication context
@@ -127,6 +130,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
+
+          {/* Payment routes */}
+          <Route path="/plans" element={<PlansPage />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/cancel" element={<PaymentCancel />} />
 
           {/* Google OAuth callback route */}
           <Route path="/auth/google/callback" element={<GoogleCallback />} />

@@ -13,6 +13,7 @@
     "@gsap/react": "^2.1.2",
     "@mkkellogg/gaussian-splats-3d": "^0.4.7",
     "@react-three/fiber": "^8.17.14",
+    "@stripe/stripe-js": "^7.2.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "framer-motion": "^12.4.1",

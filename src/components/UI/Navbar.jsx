@@ -27,6 +27,13 @@ const NavBar = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const isProfilePage =
+    location.pathname === "/profile" ||
+    location.pathname === "/plans" ||
+    location.pathname === "/payment-success" ||
+    location.pathname === "/payment-cancel" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
 
   // Handle navigation for nav items
   const handleNavClick = (item) => {
@@ -61,22 +68,29 @@ const NavBar = () => {
   }, [isAudioPlaying]);
 
   useEffect(() => {
-    if (currentScrollY === 0) {
+    // Always add the floating-nav and background class for profile page
+    if (isProfilePage) {
+      navContainerRef.current.classList.add("floating-nav");
+      navContainerRef.current.classList.add("profile-page-nav");
+    } else if (currentScrollY === 0) {
       // Topmost position: show navbar without floating-nav
       setIsNavVisible(true);
       navContainerRef.current.classList.remove("floating-nav");
+      navContainerRef.current.classList.remove("profile-page-nav");
     } else if (currentScrollY > lastScrollY) {
       // Scrolling down: hide navbar and apply floating-nav
       setIsNavVisible(false);
       navContainerRef.current.classList.add("floating-nav");
+      navContainerRef.current.classList.remove("profile-page-nav");
     } else if (currentScrollY < lastScrollY) {
       // Scrolling up: show navbar with floating-nav
       setIsNavVisible(true);
       navContainerRef.current.classList.add("floating-nav");
+      navContainerRef.current.classList.remove("profile-page-nav");
     }
 
     setLastScrollY(currentScrollY);
-  }, [currentScrollY, lastScrollY]);
+  }, [currentScrollY, lastScrollY, isProfilePage]);
 
   useEffect(() => {
     gsap.to(navContainerRef.current, {
