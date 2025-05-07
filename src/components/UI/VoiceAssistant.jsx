@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
+import AssistantAPI from "../../api/assistant";
 
 const VoiceAssistant = () => {
   const [isListening, setIsListening] = useState(false);
@@ -75,22 +76,7 @@ const VoiceAssistant = () => {
   const sendToAPI = async (text) => {
     try {
       setIsResponsePlaying(true);
-      const response = await fetch(
-        "http://localhost:5103/api/AssistantApi/question",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ question: text }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.text();
+      const data = await AssistantAPI.askQuestion(text);
       setResponse(data);
       speakResponse(data);
     } catch (error) {
