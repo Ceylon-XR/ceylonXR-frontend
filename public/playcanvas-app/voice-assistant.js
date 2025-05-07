@@ -92,6 +92,12 @@
     let isResponsePlaying = false;
     let transcript = "";
 
+    // Get API base URL from environment variables
+    const API_BASE_URL =
+      window.env?.REACT_APP_API_URL ||
+      import.meta.env?.VITE_API_URL ||
+      "http://localhost:5103/api";
+
     const { button, feedback } = createVoiceAssistantUI();
 
     // Initialize speech recognition
@@ -168,16 +174,13 @@
         isResponsePlaying = true;
         feedback.innerHTML = `<strong>You said:</strong><br>${text}<br><br><strong>Processing...</strong>`;
 
-        const response = await fetch(
-          "http://localhost:5103/api/AssistantApi/question",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ question: text }),
-          }
-        );
+        const response = await fetch(`${API_BASE_URL}/AssistantApi/question`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: text }),
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
