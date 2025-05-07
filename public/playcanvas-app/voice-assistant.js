@@ -1,4 +1,18 @@
 (function () {
+  // Import the AssistantAPI
+  let AssistantAPI;
+
+  // Dynamically import the AssistantAPI module
+  function importAssistantAPI() {
+    import("../../src/api/assistant.js")
+      .then((module) => {
+        AssistantAPI = module.default;
+      })
+      .catch((error) => {
+        console.error("Error importing AssistantAPI:", error);
+      });
+  }
+
   // Create voice assistant UI
   function createVoiceAssistantUI() {
     // Add CSS styles
@@ -87,6 +101,11 @@
 
   // Initialize voice assistant functionality
   function initVoiceAssistant() {
+    // Ensure API is imported
+    if (!AssistantAPI) {
+      importAssistantAPI();
+    }
+
     let recognition = null;
     let isListening = false;
     let isResponsePlaying = false;
@@ -168,22 +187,8 @@
         isResponsePlaying = true;
         feedback.innerHTML = `<strong>You said:</strong><br>${text}<br><br><strong>Processing...</strong>`;
 
-        const response = await fetch(
-          "http://localhost:5103/api/AssistantApi/question",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ question: text }),
-          }
-        );
+        const data = await AssistantAPI.askQuestion(text);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.text();
         feedback.innerHTML = `<strong>You said:</strong><br>${text}<br><br><strong>Assistant:</strong><br>${data}`;
         speakResponse(data);
       } catch (error) {
@@ -216,8 +221,12 @@
 
   // Initialize when DOM is loaded
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initVoiceAssistant);
+    document.addEventListener("DOMContentLoaded", () => {
+      importAssistantAPI();
+      initVoiceAssistant();
+    });
   } else {
+    importAssistantAPI();
     initVoiceAssistant();
   }
 })();
