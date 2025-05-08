@@ -169,7 +169,7 @@
         feedback.innerHTML = `<strong>You said:</strong><br>${text}<br><br><strong>Processing...</strong>`;
 
         const response = await fetch(
-          "https://ceylonxr.azurewebsites.net/api/AssistantApi/question",
+          "http://localhost:5103/api/AssistantApi/question",
           {
             method: "POST",
             headers: {

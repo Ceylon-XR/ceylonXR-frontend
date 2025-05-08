@@ -146,6 +146,11 @@ const Places = () => {
     }
   };
 
+  // Function to open a different PlayCanvas app (e.g., test2 build)
+  const openPlayCanvasTest2 = () => {
+    window.open("/playcanvas/index.html", "_blank");
+  };
+
   return (
     <section className="bg-black pb-52">
       <div className="container mx-auto px-3 md:px-10">
@@ -201,13 +206,13 @@ const Places = () => {
 
           <BentoTilt
             className="bento-tilt_1 me-14 md:col-span-1 md:me-0"
-            onClick={() => navigate("/test2")}
+            onClick={openPlayCanvasTest2}
           >
             <Card
               src="img/test2.webp"
               title={<>test2</>}
               description="test purposes"
-              isComingSoon={true}
+              isComingSoon={false}
             />
           </BentoTilt>
 
