@@ -4,8 +4,8 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-1" value="PostgresSQL&lt;div&gt;DB&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
-          <mxGeometry x="90" y="590" width="90" height="100" as="geometry" />
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-1" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="70" y="590" width="120" height="110" as="geometry" />
         </mxCell>
         <mxCell id="9Thi-xBsE7SpvJW-nzkt-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="9Thi-xBsE7SpvJW-nzkt-2" target="9Thi-xBsE7SpvJW-nzkt-1">
           <mxGeometry relative="1" as="geometry" />
@@ -23,14 +23,14 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-2" value="ASP .NET Core server" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="250" y="430" width="120" height="60" as="geometry" />
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="400" width="120" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-3" value="OpenAI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-3" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="250" y="620" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-4" value="AWS S3" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
-          <mxGeometry x="450" y="605" width="60" height="80" as="geometry" />
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-4" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;AWS S3&lt;/span&gt;&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="470" y="605" width="80" height="115" as="geometry" />
         </mxCell>
         <mxCell id="9Thi-xBsE7SpvJW-nzkt-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="9Thi-xBsE7SpvJW-nzkt-2" target="9Thi-xBsE7SpvJW-nzkt-4">
           <mxGeometry relative="1" as="geometry" />
@@ -44,31 +44,52 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-8" value="React.js&amp;nbsp;&lt;div&gt;Client&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="250" y="250" width="120" height="60" as="geometry" />
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-8" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="210" width="120" height="100" as="geometry" />
         </mxCell>
         <mxCell id="9Thi-xBsE7SpvJW-nzkt-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="9Thi-xBsE7SpvJW-nzkt-10" target="9Thi-xBsE7SpvJW-nzkt-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-10" value="Google OAUTH" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-10" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; OAuth" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="560" y="330" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="9Thi-xBsE7SpvJW-nzkt-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="9Thi-xBsE7SpvJW-nzkt-13" target="9Thi-xBsE7SpvJW-nzkt-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="9Thi-xBsE7SpvJW-nzkt-13" target="9Thi-xBsE7SpvJW-nzkt-2">
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-13" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-17" value="&lt;b&gt;Web Speach API&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-20" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://s3.amazonaws.com/appforest_uf/f1536920601855x691820740932598700/google-logo-icon-PNG-Transparent-Background.png;" vertex="1" parent="1">
+          <mxGeometry x="570" y="337.5" width="45" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-23" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1000logos.net/wp-content/uploads/2020/08/PostgreSQL-Logo.png;" vertex="1" parent="1">
+          <mxGeometry x="80" y="620" width="104" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-24" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://freelogopng.com/images/all_img/1681142315open-ai-logo.png;" vertex="1" parent="1">
+          <mxGeometry x="257.85" y="635.8399999999999" width="104.3" height="28.33" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-25" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.logicata.com/wp-content/uploads/2020/01/Amazon-Simple-Storage-Service-S3_Bucket-with-Objects_light-bg@4x.png;" vertex="1" parent="1">
+          <mxGeometry x="485" y="642.5" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="9Thi-xBsE7SpvJW-nzkt-26" target="9Thi-xBsE7SpvJW-nzkt-2">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="60" y="440" />
-              <mxPoint x="250" y="440" />
+              <mxPoint x="60" y="428" />
+              <mxPoint x="175" y="428" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-13" value="Stripe" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry y="330" width="120" height="60" as="geometry" />
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-26" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.logo.wine/a/logo/Stripe_(company)/Stripe_(company)-Logo.wine.svg;" vertex="1" parent="1">
+          <mxGeometry x="20" y="336.67" width="80" height="53.33" as="geometry" />
         </mxCell>
-        <mxCell id="9Thi-xBsE7SpvJW-nzkt-17" value="Web Speach API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="90" y="130" width="120" height="60" as="geometry" />
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-27" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png;" vertex="1" parent="1">
+          <mxGeometry x="262" y="212" width="96" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="9Thi-xBsE7SpvJW-nzkt-29" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1200px-.NET_Core_Logo.svg.png;" vertex="1" parent="1">
+          <mxGeometry x="271.25" y="416.25" width="77.5" height="77.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
