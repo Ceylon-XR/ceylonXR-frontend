@@ -37,8 +37,7 @@ export const BentoTilt = ({ children, className = "", onClick }) => {
       style={{
         transform: transformStyle,
         cursor: onClick ? "pointer" : "default",
-      }}
-    >
+      }}>
       {children}
     </div>
   );
@@ -72,8 +71,7 @@ export const Card = ({
     <div
       className="relative size-full"
       onClick={onClick}
-      style={{ cursor: onClick ? "pointer" : "default" }}
-    >
+      style={{ cursor: onClick ? "pointer" : "default" }}>
       {/* Image */}
       <img
         src={src}
@@ -104,8 +102,7 @@ export const Card = ({
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs uppercase text-white/90"
-        >
+          className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs uppercase text-white/90">
           {/* Radial gradient hover effect */}
           <div
             className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
@@ -168,8 +165,7 @@ const Places = () => {
         {/* Ella Card */}
         <BentoTilt
           className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]"
-          onClick={() => navigate("/ella")}
-        >
+          onClick={() => navigate("/ella")}>
           <Card
             src="img/ella.webp"
             title={<>Ella</>}
@@ -181,8 +177,10 @@ const Places = () => {
         <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
           <BentoTilt
             className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2"
-            onClick={() => navigate("/sigiriya")}
-          >
+            onClick={(e) => {
+              e.preventDefault();
+              // No navigation since it's coming soon
+            }}>
             <Card
               src="img/sigiriya.webp"
               title={<>sigiriya</>}
@@ -193,26 +191,27 @@ const Places = () => {
 
           <BentoTilt
             className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0"
-            onClick={openPlayCanvasWithVoiceAssistant}
-          >
+            onClick={openPlayCanvasWithVoiceAssistant}>
             <Card
-              src="img/test.webp"
-              title={<>test</>}
-              description="test purposes"
+              src="img/test2.png"
+              title={<>Test Room</>}
+              description="Explore our experimental 3D space featuring real-time voice assistance and interactive elements."
               isComingSoon={false}
-              showVoiceAssistant={true}
+              showVoiceAssistant={false}
             />
           </BentoTilt>
 
           <BentoTilt
             className="bento-tilt_1 me-14 md:col-span-1 md:me-0"
-            onClick={openPlayCanvasTest2}
-          >
+            onClick={(e) => {
+              e.preventDefault();
+              // No navigation since it's coming soon
+            }}>
             <Card
-              src="img/test2.webp"
-              title={<>test2</>}
-              description="test purposes"
-              isComingSoon={false}
+              src="img/foe_usj.jpg"
+              title={<>Campus Tour- FOE USJP</>}
+              description="Discover Sri Lanka’s newest engineering complex at USJP, equipped with cutting-edge tech and modern labs—virtually tour the spaces shaping tomorrow’s engineers."
+              isComingSoon={true}
             />
           </BentoTilt>
 
