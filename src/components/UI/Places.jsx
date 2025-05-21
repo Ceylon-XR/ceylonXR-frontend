@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
+import { GiFootprint } from "react-icons/gi";
+import { PiBirdFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import VoiceAssistant from "./VoiceAssistant";
 
@@ -50,6 +52,7 @@ export const Card = ({
   isComingSoon,
   onClick,
   showVoiceAssistant,
+  viewType,
 }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoverOpacity, setHoverOpacity] = useState(0);
@@ -119,6 +122,27 @@ export const Card = ({
           )}
         </div>
       </div>
+      {/* Top-right view-type pill */}
+      <div
+        className="
+      absolute top-4 right-4 z-20
+      border-hsla flex items-center gap-1
+      rounded-full bg-black px-5 py-2
+      uppercase text-xs text-white/90
+      transition-transform hover:scale-105
+    ">
+        {viewType === "bird" ? (
+          <>
+            <PiBirdFill className="relative z-20" />
+            <span className="relative z-20 ml-1">Bird View</span>
+          </>
+        ) : (
+          <>
+            <GiFootprint className="relative z-20" />
+            <span className="relative z-20 ml-1">Surface View</span>
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -144,8 +168,8 @@ const Places = () => {
   };
 
   // Function to open a different PlayCanvas app (e.g., test2 build)
-  const openPlayCanvasTest2 = () => {
-    window.open("/playcanvas/index.html", "_blank");
+  const openElla = () => {
+    window.open("/ella/index.html", "_blank");
   };
 
   return (
@@ -165,12 +189,13 @@ const Places = () => {
         {/* Ella Card */}
         <BentoTilt
           className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]"
-          onClick={() => navigate("/ella")}>
+          onClick={openElla}>
           <Card
             src="img/ella.webp"
             title={<>Ella</>}
             description="Nestled in the lush hills of Sri Lanka, Ella is a breathtaking escape filled with misty mountains, scenic tea plantations, and iconic landmarks like Nine Arches Bridge, Little Adam’s Peak, and Ravana Falls. A land of adventure, history, and wonder, Ella invites you to explore its rich culture and natural beauty."
             isComingSoon={false}
+            viewType="bird"
           />
         </BentoTilt>
 
@@ -186,6 +211,7 @@ const Places = () => {
               title={<>sigiriya</>}
               description="Perched on a towering rock, Sigiriya is an ancient fortress filled with stunning frescoes, landscaped gardens, and the iconic Lion’s Paw entrance. A UNESCO World Heritage site, it offers a glimpse into Sri Lanka's rich history and breathtaking views from its summit."
               isComingSoon={true} // mark as coming soon if needed.
+              viewType="bird"
             />
           </BentoTilt>
 
