@@ -153,7 +153,7 @@ const Places = () => {
   // Function to open PlayCanvas with voice assistant
   const openPlayCanvasWithVoiceAssistant = () => {
     const playCanvasWindow = window.open(
-      "/playcanvas-app/index.html",
+      "/playcanvas/playcanvas-app/index.html",
       "_blank"
     );
 
@@ -169,7 +169,7 @@ const Places = () => {
 
   // Function to open a different PlayCanvas app (e.g., test2 build)
   const openElla = () => {
-    window.open("/ella/index.html", "_blank");
+    window.open("/playcanvas/ella/index.html", "_blank");
   };
 
   return (
