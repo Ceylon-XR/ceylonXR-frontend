@@ -27,13 +27,32 @@ const TokenPaymentModal = ({
     } catch (error) {
       console.error("Payment error:", error);
 
-      if (error.response && error.response.status === 400) {
-        setError(
-          "Insufficient tokens. Please add more tokens to your account."
-        );
+      // Extract the error message with better fallbacks
+      let errorMessage;
+
+      if (
+        error.message &&
+        error.message !== `Error: HTTP error ${error.status}`
+      ) {
+        // If we have a meaningful message, use it
+        errorMessage = error.message;
+      } else if (error.data) {
+        // Check various possible formats of error data
+        if (typeof error.data === "string") {
+          errorMessage = error.data;
+        } else if (error.data.message) {
+          errorMessage = error.data.message;
+        } else if (error.data.title) {
+          errorMessage = error.data.title;
+        } else {
+          errorMessage = JSON.stringify(error.data);
+        }
       } else {
-        setError("An error occurred during payment. Please try again.");
+        // Last resort fallback
+        errorMessage = "An error occurred during payment. Please try again.";
       }
+
+      setError(errorMessage);
     } finally {
       setProcessing(false);
     }

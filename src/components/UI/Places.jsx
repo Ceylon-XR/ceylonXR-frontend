@@ -162,7 +162,7 @@ const Places = () => {
   const openPlayCanvasWithVoiceAssistant = () => {
     // Set the selected place and show payment modal
     setSelectedPlace({
-      id: "1",
+      id: "6",
       placeId: "nemuro-city-museum",
       title: "Nemuro City Museum",
       tokensRequired: 5, // Set the required tokens for this experience

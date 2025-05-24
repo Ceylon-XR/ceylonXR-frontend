@@ -14,18 +14,37 @@ const defaultOptions = {
 // Helper function to handle API responses
 const handleResponse = async (response) => {
   if (!response.ok) {
-    console.log("Error response:", response);
-    const errorData = await response.json().catch(() => null);
-    console.log("Error response:", errorData);
-    if (errorData && errorData.message) {
-      throw errorData.message;
-    } else if (errorData) {
-      throw JSON.stringify(errorData);
-    } else {
-      throw `HTTP error ${response.status}`;
+    // Try to get both text and JSON formats to ensure we don't miss error messages
+    const responseText = await response.text();
+
+    // Try to parse as JSON first
+    let errorData;
+    try {
+      errorData = JSON.parse(responseText);
+    } catch (e) {
+      // If not JSON, use the raw text
+      errorData = { message: responseText };
     }
+
+    // Create a custom error object with both message and raw data
+    const error = new Error(errorData.message || responseText);
+    error.status = response.status;
+    error.data = errorData;
+    error.response = response;
+    console.log("API Error:", error);
+
+    throw error;
   }
-  return response.json();
+
+  // For successful responses, try to parse JSON, fall back to text if not JSON
+  const responseText = await response.text();
+  if (!responseText) return {};
+
+  try {
+    return JSON.parse(responseText);
+  } catch (e) {
+    return responseText;
+  }
 };
 
 // API object with methods for different HTTP verbs
