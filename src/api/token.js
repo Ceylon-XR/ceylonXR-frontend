@@ -4,7 +4,7 @@ export const payForPlace = async (placeId, tokensRequired) => {
   try {
     const response = await API.post(
       `/tokens/pay/${placeId}`,
-      { tokens: tokensRequired },
+      { tokens: tokensRequired, placeId: placeId },
       { withCredentials: true }
     );
     return response.data;
