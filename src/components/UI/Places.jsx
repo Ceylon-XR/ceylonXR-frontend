@@ -4,6 +4,7 @@ import { GiFootprint } from "react-icons/gi";
 import { PiBirdFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import VoiceAssistant from "./VoiceAssistant";
+import TokenPaymentModal from "./TokenPaymentModal";
 
 export const BentoTilt = ({ children, className = "", onClick }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -153,9 +154,27 @@ export const Card = ({
 
 const Places = () => {
   const navigate = useNavigate();
-
+  // Add state for token payment modal
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  ``;
   // Function to open PlayCanvas with voice assistant
   const openPlayCanvasWithVoiceAssistant = () => {
+    // Set the selected place and show payment modal
+    setSelectedPlace({
+      id: "1",
+      placeId: "nemuro-city-museum",
+      title: "Nemuro City Museum",
+      tokensRequired: 5, // Set the required tokens for this experience
+    });
+    setShowPaymentModal(true);
+  };
+
+  // Handle successful payment
+  const handlePaymentSuccess = () => {
+    setShowPaymentModal(false);
+
+    // After successful payment, open PlayCanvas
     const playCanvasWindow = window.open(
       "/playcanvas/playcanvas-app/index.html",
       "_blank"
@@ -178,6 +197,17 @@ const Places = () => {
 
   return (
     <section className="bg-black pb-52">
+      {/* Token Payment Modal */}
+      {selectedPlace && (
+        <TokenPaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => setShowPaymentModal(false)}
+          place={selectedPlace}
+          tokensRequired={selectedPlace.tokensRequired}
+          onSuccess={handlePaymentSuccess}
+        />
+      )}
+
       <div className="container mx-auto px-3 md:px-10">
         <div className="px-5 py-32">
           <p className="font-circular-web text-lg text-blue-50">
