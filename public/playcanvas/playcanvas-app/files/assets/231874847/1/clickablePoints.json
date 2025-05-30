@@ -1,0 +1,19 @@
+{
+  "locations": [
+    {
+      "name": "Standing Buddha Statue",
+      "position": {"x": 1.973, "y": 2.321, "z": 1.773},
+      "description": "A statue of the Buddha standing gracefully, often with one hand raised in a gesture of blessing or protection (abhaya mudra)."
+    },
+    {
+      "name": "Later Buddhism",
+      "position": {"x": -3.842, "y": 3.348, "z": 4.233},
+      "description": "Later Buddhism developed new ideas about compassion and enlightenment. Mahayana Buddhism introduced the Bodhisattva, a being who delays personal enlightenment to help others."
+    },
+    {
+      "name": "Early Buddhism",
+      "position": {"x": 3.614, "y": 3.426, "z": 2.429},
+      "description": "Early Buddhism, also known as Theravāda, is the oldest form of Buddhism. It focuses on the original teachings of the Buddha, emphasizing self-discipline, meditation, and wisdom."
+    }
+  ]
+}
