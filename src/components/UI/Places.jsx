@@ -5,6 +5,7 @@ import { PiBirdFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import VoiceAssistant from "./VoiceAssistant";
 import TokenPaymentModal from "./TokenPaymentModal";
+import placesData from "../../data/placesData";
 
 export const BentoTilt = ({ children, className = "", onClick }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -158,35 +159,38 @@ const Places = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
 
-  // Function to open PlayCanvas with voice assistant
+  // Direct navigation functions
+  const navigateToPlace = (category, placeId) => {
+    navigate(`/${category}/${placeId}`);
+  };
+
+  // Legacy functions for backward compatibility
   const openPlayCanvasWithVoiceAssistant = () => {
-    // Set the selected place and show payment modal
     setSelectedPlace({
       id: "6",
       placeId: "nemuro-city-museum",
       title: "Nemuro City Museum",
-      tokensRequired: 5, // Set the required tokens for this experience
+      tokensRequired: 5,
     });
     setShowPaymentModal(true);
   };
 
-  // Function to open Campus Tour without payment
   const openCampusTour = () => {
-    // Open the Campus Tour directly without payment
     window.open("/playcanvas/campus-tour/index.html", "_blank");
   };
 
-  // Handle successful payment
+  const openElla = () => {
+    window.open("/playcanvas/ella/index.html", "_blank");
+  };
+
   const handlePaymentSuccess = () => {
     setShowPaymentModal(false);
 
-    // After successful payment, open PlayCanvas
     const playCanvasWindow = window.open(
       "/playcanvas/playcanvas-app/index.html",
       "_blank"
     );
 
-    // When the window loads, inject our voice assistant script
     if (playCanvasWindow) {
       playCanvasWindow.addEventListener("load", () => {
         const script = playCanvasWindow.document.createElement("script");
@@ -194,11 +198,6 @@ const Places = () => {
         playCanvasWindow.document.body.appendChild(script);
       });
     }
-  };
-
-  // Function to open a different PlayCanvas app (e.g., test2 build)
-  const openElla = () => {
-    window.open("/playcanvas/ella/index.html", "_blank");
   };
 
   return (
@@ -226,71 +225,168 @@ const Places = () => {
           </p>
         </div>
 
-        {/* Ella Card */}
-        <BentoTilt
-          className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]"
-          onClick={openElla}
-        >
-          <Card
-            src="img/ella.webp"
-            title={<>Ella</>}
-            description="Nestled in the lush hills of Sri Lanka, Ella is a breathtaking escape filled with misty mountains, scenic tea plantations, and iconic landmarks like Nine Arches Bridge, Little Adam’s Peak, and Ravana Falls. A land of adventure, history, and wonder, Ella invites you to explore its rich culture and natural beauty."
-            isComingSoon={false}
-            viewType="bird"
-          />
-        </BentoTilt>
+        {/* Tourism Category Section */}
+        <div className="mb-16">
+          <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
+            Tourism
+          </h2>
 
-        <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
-          <BentoTilt
-            className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2"
-            onClick={(e) => {
-              e.preventDefault();
-              // No navigation since it's coming soon
-            }}
-          >
-            <Card
-              src="img/sigiriya.webp"
-              title={<>sigiriya</>}
-              description="Perched on a towering rock, Sigiriya is an ancient fortress filled with stunning frescoes, landscaped gardens, and the iconic Lion’s Paw entrance. A UNESCO World Heritage site, it offers a glimpse into Sri Lanka's rich history and breathtaking views from its summit."
-              isComingSoon={true} // mark as coming soon if needed.
-              viewType="bird"
-            />
-          </BentoTilt>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            {/* Ella Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("tourism", "ella")}
+            >
+              <Card
+                src="img/tourism/ella.webp"
+                title={<>Ella</>}
+                description="Nestled in the lush hills of Sri Lanka, Ella is a breathtaking escape filled with misty mountains, scenic tea plantations, and iconic landmarks."
+                isComingSoon={false}
+                viewType="bird"
+              />
+            </BentoTilt>
 
-          <BentoTilt
-            className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0"
-            onClick={openPlayCanvasWithVoiceAssistant}
-          >
-            <Card
-              src="img/image.png"
-              title={<>Nemuro City Museum</>}
-              description="Explore our experimental 3D space featuring real-time voice assistance and interactive elements."
-              isComingSoon={false}
-              showVoiceAssistant={false}
-            />
-          </BentoTilt>
+            {/* Sigiriya Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("tourism", "sigiriya")}
+            >
+              <Card
+                src="img/sigiriya.webp"
+                title={<>sigiriya</>}
+                description="Perched on a towering rock, Sigiriya is an ancient fortress filled with stunning frescoes, landscaped gardens, and the iconic Lion's Paw entrance."
+                isComingSoon={true}
+                viewType="bird"
+              />
+            </BentoTilt>
 
-          <BentoTilt
-            className="bento-tilt_1 me-14 md:col-span-1 md:me-0"
-            onClick={openCampusTour}
-          >
-            <Card
-              src="img/foe_usj.jpg"
-              title={<>Campus Tour- FOE USJP</>}
-              description="Discover Sri Lanka's newest engineering complex at USJP, equipped with cutting-edge tech and modern labs—virtually tour the spaces shaping tomorrow's engineers."
-              isComingSoon={false}
-              viewType="bird"
-            />
-          </BentoTilt>
+            {/* Campus Tour Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("tourism", "campus-tour")}
+            >
+              <Card
+                src="img/foe_usj.jpg"
+                title={<>Campus Tour - FOE USJP</>}
+                description="Discover Sri Lanka's newest engineering complex at USJP, equipped with cutting-edge tech and modern labs."
+                isComingSoon={false}
+                viewType="bird"
+              />
+            </BentoTilt>
 
-          <BentoTilt className="bento-tilt_2">
-            <div className="flex size-full flex-col justify-between bg-blue-300 p-5">
-              <h1 className="bento-title special-font max-w-64 text-black">
-                More coming soon.
-              </h1>
-              <TiLocationArrow className="m-5 scale-[5] self-end" />
-            </div>
-          </BentoTilt>
+            {/* Colombo National Museum Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("tourism", "colombo-museum")}
+            >
+              <Card
+                src="img/tourism/National_Museum.jpg"
+                title={<>Colombo National Museum</>}
+                description="Sri Lanka's primary cultural institution featuring artifacts showcasing the rich heritage and history of the island."
+                isComingSoon={false}
+                viewType="surface"
+              />
+            </BentoTilt>
+
+            {/* Nemuro City Museum Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("tourism", "nemuro-museum")}
+            >
+              <Card
+                src="img/tourism/Nemuro_City_Museum.png"
+                title={<>Nemuro City Museum</>}
+                description="Explore our experimental 3D space featuring real-time voice assistance and interactive elements."
+                isComingSoon={false}
+                showVoiceAssistant={false}
+                viewType="surface"
+              />
+            </BentoTilt>
+          </div>
+        </div>
+
+        {/* Hotels Category Section */}
+        <div className="mb-16">
+          <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
+            Hotels
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            {/* Cinnamon Grand Hotel Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("hotels", "cinnamon-grand")}
+            >
+              <Card
+                src="img/hotels/cinnamon-grand.jpg"
+                title={<>Cinnamon Grand</>}
+                description="Experience luxury at this iconic 5-star hotel in the heart of Colombo, featuring elegant rooms, fine dining, and world-class amenities."
+                isComingSoon={true}
+                viewType="surface"
+              />
+            </BentoTilt>
+
+            {/* Jetwing Blue Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("hotels", "jetwing-blue")}
+            >
+              <Card
+                src="img/hotels/jetwing-blue.jpg"
+                title={<>Jetwing Blue</>}
+                description="Beachfront luxury in Negombo with stunning ocean views, contemporary design, and exceptional Sri Lankan hospitality."
+                isComingSoon={true}
+                viewType="surface"
+              />
+            </BentoTilt>
+
+            {/* Heritance Kandalama Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("hotels", "heritance-kandalama")}
+            >
+              <Card
+                src="img/hotels/heritance.jpeg"
+                title={<>Heritance Kandalama</>}
+                description="An architectural marvel embedded in nature, offering breathtaking views of Sigiriya Rock and Kandalama Lake."
+                isComingSoon={true}
+                viewType="bird"
+              />
+            </BentoTilt>
+          </div>
+        </div>
+
+        {/* Other Category Section */}
+        <div className="mb-16">
+          <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
+            Other
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            {/* Barista Colombo Card */}
+            <BentoTilt
+              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+              onClick={() => navigateToPlace("other", "barista-colombo")}
+            >
+              <Card
+                src="img/other/barista.jpg"
+                title={<>Barista Colombo</>}
+                description="Experience the warm ambiance and rich coffee culture of Sri Lanka's premier coffee house chain."
+                isComingSoon={true}
+                viewType="surface"
+              />
+            </BentoTilt>
+
+            {/* More Coming Soon Card */}
+            <BentoTilt className="border-hsla relative h-96 w-full overflow-hidden rounded-md">
+              <div className="flex size-full flex-col justify-between bg-blue-300 p-5">
+                <h1 className="bento-title special-font max-w-64 text-black">
+                  More coming soon.
+                </h1>
+                <TiLocationArrow className="m-5 scale-[5] self-end" />
+              </div>
+            </BentoTilt>
+          </div>
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import React, { useState, createContext, useEffect, useContext } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -5,7 +6,6 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import { useState, createContext, useEffect, useContext } from "react";
 import NavBar from "./components/UI/Navbar";
 import Footer from "./components/UI/Footer";
 import ScenePage from "./components/UI/ScenePage";
@@ -16,6 +16,7 @@ import Profile from "./components/Auth/Profile";
 import PlansPage from "./components/Payment/PlansPage";
 import PaymentSuccess from "./components/Payment/PaymentSuccess";
 import PaymentCancel from "./components/Payment/PaymentCancel";
+import PlaceDetail from "./components/UI/PlaceDetail";
 import { getCurrentUser, handleGoogleCallback } from "./api/auth";
 
 // Create authentication context
@@ -114,13 +115,13 @@ function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <Router>
+        <NavBar />
         <Routes>
           {/* Main landing page route */}
           <Route
             path="/"
             element={
               <main className="relative min-h-screen w-screen overflow-x-hidden">
-                <NavBar />
                 <Home />
                 <Footer />
               </main>
@@ -139,7 +140,10 @@ function App() {
           {/* Google OAuth callback route */}
           <Route path="/auth/google/callback" element={<GoogleCallback />} />
 
-          {/* Dynamic route for scene pages */}
+          {/* Place detail route */}
+          <Route path="/:category/:placeId" element={<PlaceDetail />} />
+
+          {/* Dynamic route for scene pages - keep this last so it doesn't override other routes */}
           <Route path="/:sceneName" element={<ScenePage />} />
         </Routes>
       </Router>
