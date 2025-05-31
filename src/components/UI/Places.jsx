@@ -9,6 +9,7 @@ import placesData from "../../data/placesData";
 
 export const BentoTilt = ({ children, className = "", onClick }) => {
   const [transformStyle, setTransformStyle] = useState("");
+  const [scale, setScale] = useState(1);
   const itemRef = useRef(null);
 
   const handleMouseMove = (event) => {
@@ -20,27 +21,36 @@ export const BentoTilt = ({ children, className = "", onClick }) => {
     const relativeX = (event.clientX - left) / width;
     const relativeY = (event.clientY - top) / height;
 
-    const tiltX = (relativeY - 0.5) * 5;
-    const tiltY = (relativeX - 0.5) * -5;
+    const tiltX = (relativeY - 0.5) * 6; // Slightly increased tilt
+    const tiltY = (relativeX - 0.5) * -6;
 
-    const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(.95, .95, .95)`;
+    const newTransform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
     setTransformStyle(newTransform);
+  };
+
+  const handleMouseEnter = () => {
+    setScale(1.02); // Slightly scale up on hover
   };
 
   const handleMouseLeave = () => {
     setTransformStyle("");
+    setScale(1);
   };
 
   return (
     <div
       ref={itemRef}
-      className={className}
+      className={`${className} transition-all duration-300 ease-out`}
       onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       style={{
-        transform: transformStyle,
+        transform: transformStyle
+          ? `${transformStyle} scale(${scale})`
+          : `scale(${scale})`,
         cursor: onClick ? "pointer" : "default",
+        boxShadow: scale > 1 ? "0 10px 30px -10px rgba(0, 0, 0, 0.5)" : "none",
       }}
     >
       {children}
@@ -72,10 +82,9 @@ export const Card = ({
 
   const handleMouseEnter = () => setHoverOpacity(1);
   const handleMouseLeave = () => setHoverOpacity(0);
-
   return (
     <div
-      className="relative size-full"
+      className="relative size-full transition-transform duration-300 ease-out"
       onClick={onClick}
       style={{ cursor: onClick ? "pointer" : "default" }}
     >
@@ -85,16 +94,13 @@ export const Card = ({
         alt={title}
         className="absolute left-0 top-0 size-full object-cover object-center"
       />
-
       {/* Voice Assistant */}
       {showVoiceAssistant && <VoiceAssistant />}
-
       {/* Diagonal Gradient Overlay */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-black/60 to-transparent"
         aria-hidden="true"
       />
-
       {/* Content */}
       <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
         <div>
@@ -113,10 +119,10 @@ export const Card = ({
         >
           {/* Radial gradient hover effect */}
           <div
-            className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+            className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 ease-in-out"
             style={{
               opacity: hoverOpacity,
-              background: `radial-gradient(100px circle at ${cursorPosition.x}px ${cursorPosition.y}px, #656fe288, #00000026)`,
+              background: `radial-gradient(150px circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(101, 111, 226, 0.6), rgba(0, 0, 0, 0.15))`,
             }}
           />
           <TiLocationArrow className="relative z-20" />
@@ -127,14 +133,14 @@ export const Card = ({
           )}
         </div>
       </div>
-      {/* Top-right view-type pill */}
+      {/* Top-right view-type pill */}{" "}
       <div
         className="
       absolute top-4 right-4 z-20
       border-hsla flex items-center gap-1
       rounded-full bg-black px-5 py-2
       uppercase text-xs text-white/90
-      transition-transform hover:scale-105
+      transition-all duration-300 ease-in-out hover:scale-108 hover:shadow-lg
     "
       >
         {viewType === "bird" ? (
