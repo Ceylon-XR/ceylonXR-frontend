@@ -38,7 +38,7 @@ const placesData = {
       experienceUrl: "/playcanvas/ella/index.html",
     },
     "colombo-museum": {
-      id: "colombo-museum",
+      id: "6",
       title: "Colombo National Museum",
       description:
         "Sri Lanka's primary cultural institution featuring artifacts showcasing the rich heritage and history of the island.",
@@ -56,7 +56,7 @@ const placesData = {
       ],
       tours: [
         {
-          id: "ground-floor",
+          id: "6",
           title: "Ground Floor Exhibition",
           description: "Archaeological artifacts and ancient art",
           image: "img/tourism/National_Museum.jpg",
@@ -64,7 +64,7 @@ const placesData = {
           tokensRequired: 2,
         },
         {
-          id: "upper-floor",
+          id: "6",
           title: "Upper Floor Exhibition",
           description: "Colonial period artifacts and paintings",
           image: "img/tourism/National_Museum.jpg",
@@ -75,7 +75,7 @@ const placesData = {
       experienceUrl: "/playcanvas/playcanvas-app/index.html",
     },
     "nemuro-museum": {
-      id: "nemuro-museum",
+      id: "6",
       title: "Nemuro City Museum",
       description:
         "Explore our experimental 3D space featuring real-time voice assistance and interactive elements.",
@@ -94,7 +94,7 @@ const placesData = {
 
       tours: [
         {
-          id: "main-hall",
+          id: "6",
           title: "Main Exhibition Hall",
           description: "Explore the main exhibition space",
           image: "img/tourism/Nemuro_City_Museum.png",
@@ -102,7 +102,7 @@ const placesData = {
           tokensRequired: 5,
         },
         {
-          id: "interactive-zone",
+          id: "6",
           title: "Interactive Zone",
           description: "Engage with interactive exhibits",
           image: "img/tourism/Nemuro_City_Museum.png",
