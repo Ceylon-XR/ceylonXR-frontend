@@ -224,167 +224,55 @@ const Places = () => {
             discovery.
           </p>
         </div>{" "}
-        {/* Tourism Category Section */}
-        <div id="tourism-section" className="mb-16">
-          <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
-            Tourism
-          </h2>
+        {/* Dynamically render each category section */}
+        {Object.entries(placesData).map(([category, places]) => (
+          <div id={`${category}-section`} className="mb-16" key={category}>
+            <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {/* Ella Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("tourism", "ella")}
-            >
-              <Card
-                src="img/tourism/ella.webp"
-                title={<>Ella</>}
-                description="Nestled in the lush hills of Sri Lanka, Ella is a breathtaking escape filled with misty mountains, scenic tea plantations, and iconic landmarks."
-                isComingSoon={false}
-                viewType="bird"
-              />
-            </BentoTilt>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+              {/* Render places from the placesData */}
+              {Object.entries(places).map(([placeId, place]) => (
+                <BentoTilt
+                  key={placeId}
+                  className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
+                  onClick={() => navigateToPlace(category, placeId)}
+                >
+                  <Card
+                    src={`/${place.image}`}
+                    title={<>{place.title}</>}
+                    description={
+                      place.description.length > 150
+                        ? `${place.description.substring(0, 150)}...`
+                        : place.description
+                    }
+                    isComingSoon={place.comingSoon || false}
+                    viewType={
+                      place.tours?.[0]?.viewType ||
+                      place.rooms?.[0]?.viewType ||
+                      place.spaces?.[0]?.viewType ||
+                      "surface"
+                    }
+                    showVoiceAssistant={place.hasVoiceAssistant || false}
+                  />
+                </BentoTilt>
+              ))}
 
-            {/* Sigiriya Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("tourism", "sigiriya")}
-            >
-              <Card
-                src="img/sigiriya.webp"
-                title={<>sigiriya</>}
-                description="Perched on a towering rock, Sigiriya is an ancient fortress filled with stunning frescoes, landscaped gardens, and the iconic Lion's Paw entrance."
-                isComingSoon={true}
-                viewType="bird"
-              />
-            </BentoTilt>
-
-            {/* Campus Tour Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("tourism", "campus-tour")}
-            >
-              <Card
-                src="img/foe_usj.jpg"
-                title={<>Campus Tour - FOE USJP</>}
-                description="Discover Sri Lanka's newest engineering complex at USJP, equipped with cutting-edge tech and modern labs."
-                isComingSoon={false}
-                viewType="bird"
-              />
-            </BentoTilt>
-
-            {/* Colombo National Museum Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("tourism", "colombo-museum")}
-            >
-              <Card
-                src="img/tourism/National_Museum.jpg"
-                title={<>Colombo National Museum</>}
-                description="Sri Lanka's primary cultural institution featuring artifacts showcasing the rich heritage and history of the island."
-                isComingSoon={false}
-                viewType="surface"
-              />
-            </BentoTilt>
-
-            {/* Nemuro City Museum Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("tourism", "nemuro-museum")}
-            >
-              <Card
-                src="img/tourism/Nemuro_City_Museum.png"
-                title={<>Nemuro City Museum</>}
-                description="Explore our experimental 3D space featuring real-time voice assistance and interactive elements."
-                isComingSoon={false}
-                showVoiceAssistant={false}
-                viewType="surface"
-              />
-            </BentoTilt>
+              {/* Only add "More coming soon" to the Other category */}
+              {category === "other" && (
+                <BentoTilt className="border-hsla relative h-96 w-full overflow-hidden rounded-md">
+                  <div className="flex size-full flex-col justify-between bg-blue-300 p-5">
+                    <h1 className="bento-title special-font max-w-64 text-black">
+                      More coming soon.
+                    </h1>
+                    <TiLocationArrow className="m-5 scale-[5] self-end" />
+                  </div>
+                </BentoTilt>
+              )}
+            </div>
           </div>
-        </div>{" "}
-        {/* Hotels Category Section */}
-        <div id="hotels-section" className="mb-16">
-          <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
-            Hotels
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {/* Cinnamon Grand Hotel Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("hotels", "cinnamon-grand")}
-            >
-              <Card
-                src="img/hotels/cinnamon-grand.jpg"
-                title={<>Cinnamon Grand</>}
-                description="Experience luxury at this iconic 5-star hotel in the heart of Colombo, featuring elegant rooms, fine dining, and world-class amenities."
-                isComingSoon={true}
-                viewType="surface"
-              />
-            </BentoTilt>
-
-            {/* Jetwing Blue Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("hotels", "jetwing-blue")}
-            >
-              <Card
-                src="img/hotels/jetwing-blue.jpg"
-                title={<>Jetwing Blue</>}
-                description="Beachfront luxury in Negombo with stunning ocean views, contemporary design, and exceptional Sri Lankan hospitality."
-                isComingSoon={true}
-                viewType="surface"
-              />
-            </BentoTilt>
-
-            {/* Heritance Kandalama Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("hotels", "heritance-kandalama")}
-            >
-              <Card
-                src="img/hotels/heritance.jpeg"
-                title={<>Heritance Kandalama</>}
-                description="An architectural marvel embedded in nature, offering breathtaking views of Sigiriya Rock and Kandalama Lake."
-                isComingSoon={true}
-                viewType="bird"
-              />
-            </BentoTilt>
-          </div>
-        </div>{" "}
-        {/* Other Category Section */}
-        <div id="other-section" className="mb-16">
-          <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
-            Other
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {/* Barista Colombo Card */}
-            <BentoTilt
-              className="border-hsla relative h-96 w-full overflow-hidden rounded-md"
-              onClick={() => navigateToPlace("other", "barista-colombo")}
-            >
-              <Card
-                src="img/other/barista.jpg"
-                title={<>Barista Colombo</>}
-                description="Experience the warm ambiance and rich coffee culture of Sri Lanka's premier coffee house chain."
-                isComingSoon={true}
-                viewType="surface"
-              />
-            </BentoTilt>
-
-            {/* More Coming Soon Card */}
-            <BentoTilt className="border-hsla relative h-96 w-full overflow-hidden rounded-md">
-              <div className="flex size-full flex-col justify-between bg-blue-300 p-5">
-                <h1 className="bento-title special-font max-w-64 text-black">
-                  More coming soon.
-                </h1>
-                <TiLocationArrow className="m-5 scale-[5] self-end" />
-              </div>
-            </BentoTilt>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

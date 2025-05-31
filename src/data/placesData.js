@@ -37,6 +37,43 @@ const placesData = {
       ],
       experienceUrl: "/playcanvas/ella/index.html",
     },
+    sigiriya: {
+      id: "sigiriya",
+      title: "Sigiriya",
+      description:
+        "Perched on a towering rock, Sigiriya is an ancient fortress filled with stunning frescoes, landscaped gardens, and the iconic Lion's Paw entrance. This UNESCO World Heritage site, built by King Kashyapa in the 5th century, combines natural splendor with historical significance.",
+      image: "img/sigiriya.webp",
+      location: "Central Province, Sri Lanka",
+      contact: "+94 66 2286000",
+      website: "www.sigiriya.lk",
+      rating: 4.9,
+      features: [
+        "UNESCO Heritage Site",
+        "Ancient Frescoes",
+        "Rock Fortress",
+        "Water Gardens",
+        "Lion's Paw Entrance",
+      ],
+      tours: [
+        {
+          id: "fortress-tour",
+          title: "Fortress Tour",
+          description: "Explore the ancient fortress and its architecture",
+          image: "img/sigiriya.webp",
+          viewType: "bird",
+          tokensRequired: 3,
+        },
+        {
+          id: "water-gardens",
+          title: "Water Gardens",
+          description: "Tour the symmetrical water gardens at the base",
+          image: "img/sigiriya.webp",
+          viewType: "bird",
+          tokensRequired: 2,
+        },
+      ],
+      comingSoon: true,
+    },
     "colombo-museum": {
       id: "6",
       title: "Colombo National Museum",
