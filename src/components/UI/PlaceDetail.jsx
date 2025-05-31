@@ -10,6 +10,12 @@ const PlaceDetail = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
 
+  // Function to handle navigation back to the category section in the home page
+  const navigateToCategory = () => {
+    // Navigate to home page with a state that indicates which section to scroll to
+    navigate("/", { state: { scrollToCategory: category } });
+  };
+
   // Get place data
   const place = placesData[category]?.[placeId];
 
@@ -116,7 +122,6 @@ const PlaceDetail = () => {
             </p>
           </div>
         </div>
-
         {/* Description and Details */}
         <div className="px-5 mb-16">
           <div className="flex flex-col lg:flex-row gap-8">
@@ -200,7 +205,6 @@ const PlaceDetail = () => {
             </div>
           </div>
         </div>
-
         {/* Detail Cards Section */}
         <div className="px-5 mb-10">
           <h2 className="text-2xl special-font text-white mb-8">
@@ -228,12 +232,11 @@ const PlaceDetail = () => {
               </BentoTilt>
             ))}
           </div>
-        </div>
-
+        </div>{" "}
         {/* Back Button */}
         <div className="px-5">
           <button
-            onClick={() => navigate("/")}
+            onClick={navigateToCategory}
             className="flex items-center gap-2 text-blue-50 hover:text-blue-300 transition-colors"
           >
             <svg

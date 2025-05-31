@@ -223,10 +223,9 @@ const Places = () => {
             with historical insights, interactive storytelling, and multiplayer
             discovery.
           </p>
-        </div>
-
+        </div>{" "}
         {/* Tourism Category Section */}
-        <div className="mb-16">
+        <div id="tourism-section" className="mb-16">
           <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
             Tourism
           </h2>
@@ -303,10 +302,9 @@ const Places = () => {
               />
             </BentoTilt>
           </div>
-        </div>
-
+        </div>{" "}
         {/* Hotels Category Section */}
-        <div className="mb-16">
+        <div id="hotels-section" className="mb-16">
           <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
             Hotels
           </h2>
@@ -354,10 +352,9 @@ const Places = () => {
               />
             </BentoTilt>
           </div>
-        </div>
-
+        </div>{" "}
         {/* Other Category Section */}
-        <div className="mb-16">
+        <div id="other-section" className="mb-16">
           <h2 className="px-5 mb-6 font-circular-web text-2xl text-blue-50">
             Other
           </h2>
