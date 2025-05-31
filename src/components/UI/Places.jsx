@@ -157,7 +157,7 @@ const Places = () => {
   // Add state for token payment modal
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
-  ``;
+
   // Function to open PlayCanvas with voice assistant
   const openPlayCanvasWithVoiceAssistant = () => {
     // Set the selected place and show payment modal
@@ -168,6 +168,12 @@ const Places = () => {
       tokensRequired: 5, // Set the required tokens for this experience
     });
     setShowPaymentModal(true);
+  };
+
+  // Function to open Campus Tour without payment
+  const openCampusTour = () => {
+    // Open the Campus Tour directly without payment
+    window.open("/playcanvas/campus-tour/index.html", "_blank");
   };
 
   // Handle successful payment
@@ -266,16 +272,14 @@ const Places = () => {
 
           <BentoTilt
             className="bento-tilt_1 me-14 md:col-span-1 md:me-0"
-            onClick={(e) => {
-              e.preventDefault();
-              // No navigation since it's coming soon
-            }}
+            onClick={openCampusTour}
           >
             <Card
               src="img/foe_usj.jpg"
               title={<>Campus Tour- FOE USJP</>}
-              description="Discover Sri Lanka’s newest engineering complex at USJP, equipped with cutting-edge tech and modern labs—virtually tour the spaces shaping tomorrow’s engineers."
-              isComingSoon={true}
+              description="Discover Sri Lanka's newest engineering complex at USJP, equipped with cutting-edge tech and modern labs—virtually tour the spaces shaping tomorrow's engineers."
+              isComingSoon={false}
+              viewType="bird"
             />
           </BentoTilt>
 
