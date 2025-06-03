@@ -193,7 +193,7 @@ const Places = () => {
     setShowPaymentModal(false);
 
     const playCanvasWindow = window.open(
-      "/playcanvas/playcanvas-app/index.html",
+      "/places/colombo-national-museum/index.html",
       "_blank"
     );
 

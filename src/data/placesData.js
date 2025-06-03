@@ -109,7 +109,7 @@ const placesData = {
           tokensRequired: 2,
         },
       ],
-      experienceUrl: "/playcanvas/playcanvas-app/index.html",
+      experienceUrl: "/places/colombo-national-museum/index.html",
     },
     "nemuro-museum": {
       id: "6",
@@ -147,7 +147,7 @@ const placesData = {
           tokensRequired: 3,
         },
       ],
-      experienceUrl: "/playcanvas/playcanvas-app/index.html",
+      experienceUrl: "/places/colombo-national-museum/index.html",
     },
     "campus-tour": {
       id: "campus-tour",
@@ -169,15 +169,15 @@ const placesData = {
 
       tours: [
         {
-          id: "engineering-complex",
+          id: "6",
           title: "Engineering Complex",
           description: "Tour the main engineering building",
           image: "img/foe_usj.jpg",
           viewType: "bird",
-          tokensRequired: 0,
+          tokensRequired: 2,
         },
       ],
-      experienceUrl: "/playcanvas/campus-tour/index.html",
+      experienceUrl: "/places/campus-tour/index.html",
     },
   },
   hotels: {
