@@ -147,7 +147,7 @@ const placesData = {
           tokensRequired: 3,
         },
       ],
-      experienceUrl: "/places/colombo-national-museum/index.html",
+      experienceUrl: "/places/namuro-museum/index.html",
     },
     "campus-tour": {
       id: "campus-tour",
