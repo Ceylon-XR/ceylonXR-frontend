@@ -1,0 +1,1 @@
+namuro-museum.compressed.ply filter=lfs diff=lfs merge=lfs -text
