@@ -1,0 +1,19 @@
+{
+  "locations": [
+    {
+      "name": "Animal Skull",
+      "position": {"x": 2.684, "y": 0.857, "z": -6.232},
+      "description": "A bony structure that once protected the brain and supported the face of an animal. The skull shows sharp teeth and empty eye sockets, giving clues about the creature's diet and how it sensed the world."
+    },
+    {
+      "name": "Pinnipeds",
+      "position": {"x": -0.168, "y": 1.293, "z": -7.229},
+      "description": "Pinnipeds, commonly known as seals, are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic, mostly marine mammals."
+    },
+    {
+      "name": "Mounted Brown Bear",
+      "position": {"x": 6.074, "y": 2.33, "z": -5.922},
+      "description": "A life-sized taxidermy model of a brown bear, posed as if climbing a rocky outcrop. The display is enclosed in a museum or educational exhibit case, possibly for natural history or wildlife education."
+    }
+  ]
+}
