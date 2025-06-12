@@ -33,9 +33,15 @@ const PlaceDetail = () => {
       </div>
     );
   }
-
   // Function to handle tour selection
   const handleTourSelection = (tour) => {
+    // If no tokens required, directly open the experience
+    if (tour.tokensRequired === 0) {
+      openExperience(tour);
+      return;
+    }
+
+    // Otherwise, show payment modal
     setSelectedTour({
       ...tour,
       placeTitle: place.title,
@@ -43,25 +49,27 @@ const PlaceDetail = () => {
     setShowPaymentModal(true);
   };
 
-  // Handle payment success
-  const handlePaymentSuccess = () => {
-    setShowPaymentModal(false);
-
-    // If place has a specific experience URL, use it
+  // Function to open the experience
+  const openExperience = (tour) => {
     const experienceUrl =
       place.experienceUrl ||
-      `/playcanvas/${category}/${placeId}/${selectedTour.id}/index.html`;
+      `/playcanvas/${category}/${placeId}/${tour.id}/index.html`;
 
     const playCanvasWindow = window.open(experienceUrl, "_blank");
 
     // When the window loads, inject voice assistant script if needed
-    if (playCanvasWindow && selectedTour.hasVoiceAssistant) {
+    if (playCanvasWindow && tour.hasVoiceAssistant) {
       playCanvasWindow.addEventListener("load", () => {
         const script = playCanvasWindow.document.createElement("script");
         script.src = "/playcanvas-app/voice-assistant.js";
         playCanvasWindow.document.body.appendChild(script);
       });
     }
+  };
+  // Handle payment success
+  const handlePaymentSuccess = () => {
+    setShowPaymentModal(false);
+    openExperience(selectedTour);
   };
 
   // Determine what type of detail cards to display
@@ -224,6 +232,8 @@ const PlaceDetail = () => {
                   description={
                     place.comingSoon
                       ? card.description
+                      : card.tokensRequired === 0
+                      ? `${card.description} (FREE)`
                       : `${card.description} (${card.tokensRequired} tokens)`
                   }
                   isComingSoon={place.comingSoon}
